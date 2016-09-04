@@ -4,6 +4,10 @@
 > 
 > Polymer 1.5 ready
 
+## Doc & demo
+
+[https://lostinbrittany.github.io/granite-clipboard](https://lostinbrittany.github.io/granite-clipboard)
+
 
 ## Install
 

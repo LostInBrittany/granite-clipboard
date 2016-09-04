@@ -1,6 +1,6 @@
-# granite-alert
+# granite-clipboard
 
-> A set of [Bootstrap-like alert](http://getbootstrap.com/components/#alerts) elements.
+> A is a lightweight element wrapping-up [clipboard.js](https://clipboardjs.com/) 
 > 
 > Polymer 1.5 ready
 
@@ -10,10 +10,10 @@
 Install the component using [Bower](http://bower.io/):
 
 ```sh
-$ bower install LostInBrittany/granite-alert --save
+$ bower install LostInBrittany/granite-clipboard --save
 ```
 
-Or [download as ZIP](https://github.com/LostInBrittany/granite-alert/archive/gh-pages.zip).## Usage
+Or [download as ZIP](https://github.com/LostInBrittany/granite-clipboard/archive/gh-pages.zip).## Usage
 
 1. Import Web Components' polyfill (if needed):
 
@@ -24,13 +24,13 @@ Or [download as ZIP](https://github.com/LostInBrittany/granite-alert/archive/gh-
 2. Import Custom Element:
 
     ```html
-    <link rel="import" href="bower_components/granite-alert/granite-alert.html">
+    <link rel="import" href="bower_components/granite-clipboard/granite-clipboard.html">
     ```
 
 3. Start using it!
 
     ```html
-    <granite-alert level="danger">This is a serious alert!</granite-alert>
+    <granite-clipboard level="danger">This is a serious alert!</granite-clipboard>
     ```
 
 
@@ -38,9 +38,9 @@ Or [download as ZIP](https://github.com/LostInBrittany/granite-alert/archive/gh-
 
 Attribute     | Type      | Default  | Description
 ---           | ---       | ---      | ---
-`level`       | *String*  | `"info"` | The level of the alert 
+`text`        | *String*  | ``       | The text to copy
+`action`      | *String*  | `copy`   | The action to do (either `copy` or `cut`)  
 
-Alowed values for `level`: `info`, `warning`, `danger` and `success`
 
 
 ## Contributing

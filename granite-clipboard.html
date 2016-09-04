@@ -64,8 +64,7 @@ Typical usage:
             observer: "_onActionChange"
           }, 
           _allowedValues: {
-            type: Array,
-            value: ['copy','cut']
+            type: Array
           }
         },
 
@@ -76,6 +75,7 @@ Typical usage:
         /* Observers
         /* ********************************************************************/
         _onActionChange: function(newValue, oldValue){
+          
           if (this._allowedValues.indexOf(newValue) < 0)  {
             this.action = this._allowedValues[0];
           }
@@ -85,10 +85,14 @@ Typical usage:
         /* ********************************************************************/
         _onClipboardSuccess: function(evt){
           console.debug("[granite-clipboard] _onClipboardSuccess", evt);
+          this.fire("clipboard-"+this.action, evt);
         },
         /* ********************************************************************/
         /* Lifecycle methods
         /* ********************************************************************/
+        created: function() {
+          this._allowedValues = ['copy','cut'];
+        },
         attached: function() {
           this.clipboard = new Clipboard(this.$.container);
           this.clipboard.on('success', this._onClipboardSuccess.bind(this));

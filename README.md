@@ -9,6 +9,27 @@
 [https://lostinbrittany.github.io/granite-clipboard](https://lostinbrittany.github.io/granite-clipboard)
 
 
+## Usage example
+
+<!--
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="granite-clipboard.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<granite-clipboard text="Text to be copied">
+    <div style="width:250px;height:50px;border-radius:5px;background-color:#aaaaff;cursor:pointer;">Click here</div>
+</granite-clipboard> 
+```
+
+
+
 ## Install
 
 Install the component using [Bower](http://bower.io/):

@@ -55,6 +55,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       .vertical-section-container {
         max-width: 550px;
       }
+      .inlineClipboard {
+        display:inline-block;
+      }
     </style>
   </head>
 
@@ -65,11 +68,28 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
       <demo-snippet class="centered-demo">
         <template id="app">
           <granite-clipboard text="Text to be copied">
-            <div style="width:250px;height:50px;border-radius:5px;background-color: blue;cursor:pointer;"></div>
+            <div style="width:250px;height:50px;border-radius:5px;background-color:#aaaaff;cursor:pointer;">Click here</div>
           </granite-clipboard> 
         </template>
       </demo-snippet>
     </div>
+
+    <div class="vertical-section-container centered">
+
+      <h3>granite-clipboard</h3>
+      <demo-snippet class="centered-demo">
+        <template id="app">
+          <div> 
+            Here an inline use case
+            <granite-clipboard class="inlineClipboard" text="Text to be copied">
+              <div style="width:250px;height:50px;border-radius:5px;background-color: #aaaaff;cursor:pointer;">Hohoho</div>
+            </granite-clipboard> 
+            does it work?
+          </div>
+        </template>
+      </demo-snippet>
+    </div>
+
 
     <script>
     </script>

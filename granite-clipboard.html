@@ -18,7 +18,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 Typical usage:
 
 ```html
-<granite-clipboard></granite-clipboard>
+<granite-clipboard text="Text to be copied">
+    <div style="width:250px;height:50px;border-radius:5px;background-color:#aaaaff;cursor:pointer;">Click here</div>
+</granite-clipboard> 
 ```
     
 @element granite-clipboard
@@ -65,31 +67,40 @@ Typical usage:
           }, 
           _allowedValues: {
             type: Array
-          }
+          },
+          /**
+           * If true, log messages will automatically be logged to the console.
+           */          
+          verbose: {
+            type: Boolean,
+            value: false
+          },
         },
 
         observers: [
         ],
 
-        /* ********************************************************************/
-        /* Observers
-        /* ********************************************************************/
+        // *****************************************************************************************
+        // Observers
+        // *****************************************************************************************
         _onActionChange: function(newValue, oldValue){
           
           if (this._allowedValues.indexOf(newValue) < 0)  {
             this.action = this._allowedValues[0];
           }
         },
-        /* ********************************************************************/
-        /* Event listeners
-        /* ********************************************************************/
+        // *****************************************************************************************
+        // Event listeners
+        // *****************************************************************************************
         _onClipboardSuccess: function(evt){
-          console.debug("[granite-clipboard] _onClipboardSuccess", evt);
+          if (this.verbose) {
+            console.debug("[granite-clipboard] _onClipboardSuccess", evt);
+          }
           this.fire("clipboard-"+this.action, evt);
         },
-        /* ********************************************************************/
-        /* Lifecycle methods
-        /* ********************************************************************/
+        // *****************************************************************************************
+        // Lifecycle methods
+        // *****************************************************************************************
         created: function() {
           this._allowedValues = ['copy','cut'];
         },
@@ -100,7 +111,6 @@ Typical usage:
         dettached: function() {
           this.clipboard.destroy();
         },
-
       });
     </script>
 

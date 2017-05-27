@@ -108,7 +108,7 @@ Typical usage:
           this.clipboard = new Clipboard(this.$.container);
           this.clipboard.on('success', this._onClipboardSuccess.bind(this));
         },
-        dettached: function() {
+        detached: function() {
           this.clipboard.destroy();
         },
       });

@@ -11,18 +11,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 <link rel="import" href="../polymer/polymer.html">
 
 <script src="../clipboard/dist/clipboard.min.js"></script>
-
+<!-- bower_components/clipboard/dist/clipboard.min.js -->
 <!--
-`<granite-clipboard>` is a lightweight element wrapping-up [clipboard.js](https://clipboardjs.com/) 
+`<granite-clipboard>` is a lightweight element wrapping-up [clipboard.js](https://clipboardjs.com/)
 
 Typical usage:
 
 ```html
 <granite-clipboard text="Text to be copied">
     <div style="width:250px;height:50px;border-radius:5px;background-color:#aaaaff;cursor:pointer;">Click here</div>
-</granite-clipboard> 
+</granite-clipboard>
 ```
-    
+
 @element granite-clipboard
 @blurb A lightweight element wrapping-up clipboard.js
 @homepage index.html
@@ -30,99 +30,84 @@ Typical usage:
 -->
 <dom-module id="granite-clipboard">
 
-    <template>
-      <style>
-        :host {
-          display: block;
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <div id="container" data-clipboard-text$="[[text]]" data-clipboard-action$="[[action]]">
+      <slot></slot>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: "granite-clipboard",
+
+      properties: {
+        /**
+         * The text to copy.
+         */
+        text: {
+          type: String,
+        },
+        /**
+         * The action (copy or cut).
+         */
+        action: {
+          type: String,
+          value: "copy",
+          observer: "_onActionChange"
+        },
+        _allowedValues: {
+          type: Array,
+          value: function() {
+            return ['copy', 'cut'];
+          }
+        },
+        /**
+         * If true, log messages will automatically be logged to the console.
+         */
+        verbose: {
+          type: Boolean,
+          value: false
+        },
+      },
+
+      // Observers
+      _onActionChange: function(newValue) {
+        let new_action_index = this._allowedValues.indexOf(newValue);
+        if (new_action_index < 0) {
+          this.action = this._allowedValues[0];
+        } else {
+          this.action = this._allowedValues[new_action_index];
         }
-        #container {
+      },
+
+      // Event listeners
+      _onClipboardSuccess: function(evt) {
+        if (this.verbose) {
+          console.debug("[granite-clipboard] _onClipboardSuccess", evt);
         }
-      </style>
-        <div 
-            id="container" 
-            data-clipboard-text$="[[text]]"
-            data-clipboard-action$="[[action]]">
-          <slot></slot>
-        </div>
-    </template>
+        this.dispatchEvent(new CustomEvent("clipboard-" + this.action, {
+          bubbles: true,
+          composed: true,
+          detail: evt
+        }));
+      },
 
-
-
-    <script>
-      Polymer({
-        is: "granite-clipboard",
-
-        properties: {
-          /**
-           * The text to copy
-           */
-          text: {
-            type: String,            
-          },
-          /**
-           * The action (copy or cut)
-           */
-          action: {
-            type: String,
-            value: "copy",
-            observer: "_onActionChange"
-          }, 
-          _allowedValues: {
-            type: Array
-          },
-          /**
-           * If true, log messages will automatically be logged to the console.
-           */          
-          verbose: {
-            type: Boolean,
-            value: false
-          },
-          /**
-           * The focused element for cases when focus has been changed (e.g. in modal dialogs).
-           */
-          container: {
-            type: Object,
-            value: undefined
-          }
-        },
-
-        observers: [
-        ],
-
-        // *****************************************************************************************
-        // Observers
-        // *****************************************************************************************
-        _onActionChange: function(newValue, oldValue){
-          
-          if (this._allowedValues.indexOf(newValue) < 0)  {
-            this.action = this._allowedValues[0];
-          }
-        },
-        // *****************************************************************************************
-        // Event listeners
-        // *****************************************************************************************
-        _onClipboardSuccess: function(evt){
-          if (this.verbose) {
-            console.debug("[granite-clipboard] _onClipboardSuccess", evt);
-          }
-          this.fire("clipboard-"+this.action, evt);
-        },
-        // *****************************************************************************************
-        // Lifecycle methods
-        // *****************************************************************************************
-        created: function() {
-          this._allowedValues = ['copy','cut'];
-        },
-        attached: function() {
-          this.clipboard = new Clipboard(this.$.container, {
-            container: this.container
-          });
+      // Lifecycle methods
+      attached: function() {
+        Polymer.RenderStatus.afterNextRender(this, function() {
+          this.clipboard = new Clipboard(this.$.container);
           this.clipboard.on('success', this._onClipboardSuccess.bind(this));
-        },
-        detached: function() {
-          this.clipboard.destroy();
-        },
-      });
-    </script>
+        });
+      },
+      detached: function() {
+        this.clipboard.destroy();
+      }
+    });
+  </script>
 
 </dom-module>

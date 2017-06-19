@@ -75,6 +75,13 @@ Typical usage:
             type: Boolean,
             value: false
           },
+          /**
+           * The focused element for cases when focus has been changed (e.g. in modal dialogs).
+           */
+          container: {
+            type: Object,
+            value: undefined
+          }
         },
 
         observers: [
@@ -105,7 +112,9 @@ Typical usage:
           this._allowedValues = ['copy','cut'];
         },
         attached: function() {
-          this.clipboard = new Clipboard(this.$.container);
+          this.clipboard = new Clipboard(this.$.container, {
+            container: this.container
+          });
           this.clipboard.on('success', this._onClipboardSuccess.bind(this));
         },
         detached: function() {

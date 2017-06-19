@@ -28,19 +28,21 @@ Typical usage:
 @homepage index.html
 @demo demo/index.html
 -->
-<dom-module is="granite-clipboard">
+<dom-module id="granite-clipboard">
 
     <template>
       <style>
         :host {
           display: block;
         }
+        #container {
+        }
       </style>
         <div 
             id="container" 
             data-clipboard-text$="[[text]]"
             data-clipboard-action$="[[action]]">
-          <content></content>
+          <slot></slot>
         </div>
     </template>
 

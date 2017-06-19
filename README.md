@@ -2,7 +2,8 @@
 
 > A is a lightweight element wrapping-up [clipboard.js](https://clipboardjs.com/) 
 > 
-> Polymer 1.5 ready
+> Hybrid Polymer element, 1.x-2.x ready
+
 
 ## Doc & demo
 
@@ -43,7 +44,7 @@ Or [download as ZIP](https://github.com/LostInBrittany/granite-clipboard/archive
 1. Import Web Components' polyfill (if needed):
 
     ```html
-    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
     ```
 
 2. Import Custom Element:

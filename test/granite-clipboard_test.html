@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>granite-clipboard test</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+
+  <link rel="import" href="../granite-clipboard.html">
+</head>
+
+<body>
+
+  <test-fixture id="DefaultTestFixture">
+    <template>
+        <granite-clipboard></granite-clipboard>
+      </template>
+  </test-fixture>
+
+  <test-fixture id="ChangedActionPropertyTestFixture">
+    <template>
+        <granite-clipboard action="cut"></granite-clipboard>
+      </template>
+  </test-fixture>
+
+  <script>
+    suite('granite-clipboard', function() {
+
+      test('instantiating the element with default properties works', function() {
+        var element = fixture('DefaultTestFixture');
+        assert.equal(element.action, 'copy');
+      });
+
+      test('setting the action property to an invalid value falls back to "copy"', function() {
+        var element = fixture('DefaultTestFixture');
+        element.action = 'cot';
+        assert.equal(element.action, 'copy');
+      });
+
+      test('setting the action property to "cut" on the element works', function() {
+        var element = fixture('ChangedActionPropertyTestFixture');
+        assert.equal(element.action, 'cut');
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>

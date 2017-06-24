@@ -56,6 +56,7 @@ Typical usage:
            */
           text: {
             type: String,
+            value: ''
           },
           /**
            * The action (copy or cut).
@@ -93,13 +94,9 @@ Typical usage:
       }
 
       // Observers
-      _onActionChange(newValue) {
-        let new_action_index = this._allowedValues.indexOf(newValue);
-        if (new_action_index < 0) {
-          this.action = this._allowedValues[0];
-        } else {
-          this.action = this._allowedValues[new_action_index];
-        }
+      _onActionChange(value) {
+        let new_action_index = this._allowedValues.indexOf(value);
+        this.action = new_action_index < 0 ? this._allowedValues[0] : this._allowedValues[new_action_index];
       }
 
       // Event listeners

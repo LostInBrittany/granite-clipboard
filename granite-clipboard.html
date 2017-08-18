@@ -41,7 +41,8 @@ Typical usage:
         <div 
             id="container" 
             data-clipboard-text$="[[text]]"
-            data-clipboard-action$="[[action]]">
+            data-clipboard-action$="[[action]]"
+            data-clipboard-target$="[[target]]">
           <slot></slot>
         </div>
     </template>
@@ -66,7 +67,14 @@ Typical usage:
             type: String,
             value: "copy",
             observer: "_onActionChange"
-          }, 
+          },
+          /**
+           * The selector of the element whose text content will be used for copying
+           * instead of the `text` property.
+           */
+          target: {
+            type: String
+          },
           _allowedValues: {
             type: Array
           },

@@ -22,6 +22,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
   <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
   <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../../iron-icons/iron-icons.html">
+  <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
+  <link rel="import" href="../../paper-input/paper-input.html">
+
   <link rel="import" href="../granite-clipboard.html">
 
   <custom-style>
@@ -32,30 +36,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 </head>
 
 <body>
+
   <div class="vertical-section-container centered">
     <h3>granite-clipboard</h3>
     <demo-snippet class="centered-demo">
-      <template id="app">
-            <granite-clipboard text="Text to be copied" verbose>
-              <div style="width:250px;height:50px;border-radius:5px;background-color:#aaaaff;cursor:pointer;">Click here</div>
-            </granite-clipboard>
-          </template>
+      <template id="demo0">
+        <granite-clipboard text="Copy me!" verbose>
+          <paper-icon-button icon="content-copy" title="copy"></paper-icon-button>
+        </granite-clipboard>
+      </template>
     </demo-snippet>
   </div>
-  <div class="vertical-section-container centered">
-    <h3>granite-clipboard</h3>
-    <demo-snippet class="centered-demo">
-      <template id="app">
-            <div>
-              Here an inline use case
-              <granite-clipboard class="inlineClipboard" text="Text to be copied" verbose>
-                <div style="width:250px;height:50px;border-radius:5px;background-color: #aaaaff;cursor:pointer;">Click here</div>
-              </granite-clipboard>
-              does it work?
-            </div>
-          </template>
-    </demo-snippet>
-  </div>
+
 </body>
 
 </html>

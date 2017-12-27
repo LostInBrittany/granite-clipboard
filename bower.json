@@ -34,7 +34,7 @@
     "1.x": {
       "dependencies": {
         "polymer": "Polymer/polymer#^1.9",
-    "clipboard": "^1.7.0"
+        "clipboard": "^1.7.0"
       },
       "devDependencies": {
         "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
@@ -50,5 +50,8 @@
         "webcomponentsjs": "^0.7"
       }
     }
+  },
+  "demos": {
+    "demo": "demo/index.html"
   }
 }

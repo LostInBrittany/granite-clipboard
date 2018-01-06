@@ -78,7 +78,7 @@ Typical usage:
       // Observers
       _onActionChange: function(newValue) {
         if(!this._allowedValues) {return;}
-        let new_action_index = this._allowedValues || [].indexOf(newValue);
+        let new_action_index = this._allowedValues.indexOf(newValue);
         if (new_action_index < 0) {
           this.action = this._allowedValues[0];
         } else {

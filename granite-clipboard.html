@@ -106,7 +106,9 @@ Typical usage:
         });
       },
       detached: function() {
-        this.clipboard.destroy();
+        if (this.clipboard) {
+          this.clipboard.destroy();
+        }
       }
     });
   </script>

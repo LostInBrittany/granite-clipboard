@@ -1,3 +1,6 @@
+[![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/LostInBrittanygranite-clipboard)
+[![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/LostInBrittanygranite-clipboard.svg)](https://vaadin.com/directory/component/LostInBrittanygranite-clipboard)
+
 # granite-clipboard
 
 > A is a lightweight element wrapping-up [clipboard.js](https://clipboardjs.com/) 

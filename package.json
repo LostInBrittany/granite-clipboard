@@ -1,0 +1,29 @@
+{
+  "description": "A lightweight element wrapping-up clipboard.js",
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "lostinbrittany"
+  ],
+  "homepage": "https://github.com/LostInBrittany/granite-clipboard",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LostInBrittany/granite-clipboard"
+  },
+  "name": "@granite-elements/granite-clipboard",
+  "main": "granite-clipboard.js",
+  "author": "Horacio Gonzalez <horacio.gonzalez@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@polymer/lit-element": "^0.6.2",
+    "@polymer/polymer": "^3.0.0",
+    "@migrate-to-esm/clipboard": "2.0.1-1"
+  },
+  "devDependencies": {
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "wct-browser-legacy": "^1.0.0"
+  },
+  "version": "3.0.0"
+}

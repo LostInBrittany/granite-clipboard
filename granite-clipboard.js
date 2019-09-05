@@ -159,7 +159,7 @@ class GraniteClipboard extends LitElement {
     if (this.verbose) {
       console.debug("[granite-clipboard] _onClipboardSuccess", evt);
     }
-    this.dispatchEvent(new CustomEvent("clipboard-" + this.action, {
+    this.dispatchEvent(new CustomEvent("clipboard-" + this._action, {
       bubbles: true,
       composed: true,
       detail: evt

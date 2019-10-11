@@ -19,6 +19,11 @@
       <style is="custom-style" include="demo-pages-shared-styles">
       </style>
     </custom-style>
+    <style>
+      .inlineClipboard {
+        display: inline-block;
+      }
+    </style>
   </head>
   <body>
     <div class="vertical-section-container centered">
@@ -28,7 +33,7 @@
             <demo-snippet class="centered-demo">
               <template id="app">
                   <granite-clipboard text="Text to be copied" debug>
-                    <div style="width:250px;height:50px;border-radius:5px;background-color:#aaaaff;cursor:pointer;">Click here</div>
+                    <button style="outline:none;width:100px;height:30px;border-radius:5px;background-color:#aaaaff;cursor:pointer;text-align:center;">Click here</button>
                   </granite-clipboard>
                 </template>
             </demo-snippet>
@@ -42,7 +47,7 @@
                   <div>
                     Here an inline use case
                     <granite-clipboard class="inlineClipboard" text="Text to be copied" debug>
-                      <div style="width:250px;height:50px;border-radius:5px;background-color: #aaaaff;cursor:pointer;">Click here</div>
+                      <button style="outline:none;width:100px;height:30px;border-radius:5px;background-color:#aaaaff;cursor:pointer;text-align:center;">Click here</button>
                     </granite-clipboard>
                     does it work?
                   </div>

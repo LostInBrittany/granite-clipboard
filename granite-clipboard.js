@@ -1,4 +1,4 @@
-import { LitElement, html } from '@polymer/lit-element';
+import { LitElement, html, css } from 'lit-element';
 
 import  Clipboard  from '@migrate-to-esm/clipboard';
 
@@ -39,11 +39,11 @@ class GraniteClipboard extends LitElement {
       /**
        * The text to copy.
        */
-      text: { type: String },
+      text: { type: String, reflect: true },
       /**
        * The action (copy or cut).
        */
-      _action: { type: String },      
+      action: { type: String },      
       /**
        * If true, element logs to console
        */
@@ -51,18 +51,23 @@ class GraniteClipboard extends LitElement {
     };
   }
 
-  set action(anAction) {
+  set action(val) {
     if (this.debug) {
-      console.log('[granite-clipboard] set action', anAction);
+      console.log('[granite-clipboard] set action', val);
     }
-    if(!this._allowedValues) {return;}
-    let new_action_index = this._allowedValues.indexOf(anAction);
-    if (new_action_index < 0) {
+    let oldVal = this._action;
+    if(!this._allowedValues) {
+      return;
+    }
+    if (this._allowedValues.indexOf(val) < 0) {
       this._action = this._allowedValues[0];
     } else {
-      this._action = this._allowedValues[new_action_index];
+      this._action = val;
     }
+    this.requestUpdate('action', oldVal);
   }
+
+  get action() { return this._action; }
 
   constructor() {
     super();
@@ -95,68 +100,24 @@ class GraniteClipboard extends LitElement {
 
   render() {
     return html`
-      <div id="container" data-clipboard-text=${this.text} data-clipboard-action=${this._action}>
+      <div id="container" 
+          data-clipboard-text=${this.text} 
+          data-clipboard-action=${this.action}>
         <slot></slot>
       </div>
     `;
   }
 
-  _renderStyles() {
-    return html`
-      <style>
-        :host {
-          display: block;
-        }
-        .hidden {
-          display: none;
-        }
-        .alert {
-          padding: 15px;
-          margin-bottom: 20px;
-          border: 1px solid transparent;
-          border-radius: 4px;
-        }
-        .success {
-          color: #3c763d;
-          background-color: #dff0d8;
-          border-color: #d6e9c6;
-        }
-        .info {
-          color: #31708f;
-          background-color: #d9edf7;
-          border-color: #bce8f1;
-        }
-        .warning {
-          color: #8a6d3b;
-          background-color: #fcf8e3;
-          border-color: #faebcc;
-        }
-        .danger {
-          color: #a94442;
-          background-color: #f2dede;
-          border-color: #ebccd1;
+  static get styles() {
+    return css`
+      :host {
+        display: block;
       }
-      </style>
     `;
   }
-
-  _isHidden() {
-    if (this.hide) {
-      return 'hidden';
-    }
-    return '';
-  }
-
-  _checkLevel() {
-    if (!this.level || this._allowedLevels.indexOf(this.level) < 0) {
-      return this._allowedLevels[0]; // Set default value for `level` if unknown value is given
-    }
-    return this.level;
-  }
-
   // Event listeners
   _onClipboardSuccess(evt) {
-    if (this.verbose) {
+    if (this.debug) {
       console.debug("[granite-clipboard] _onClipboardSuccess", evt);
     }
     this.dispatchEvent(new CustomEvent("clipboard-" + this.action, {

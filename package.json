@@ -16,14 +16,13 @@
   "author": "Horacio Gonzalez <horacio.gonzalez@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@polymer/lit-element": "^0.6.2",
-    "@polymer/polymer": "^3.0.0",
-    "@migrate-to-esm/clipboard": "2.0.1-1"
+    "@migrate-to-esm/clipboard": "2.0.1-1",
+    "lit-element": "^2.2.1"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "wct-browser-legacy": "^1.0.0"
   },
-  "version": "3.0.0"
+  "version": "3.1.0"
 }

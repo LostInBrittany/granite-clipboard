@@ -1,0 +1,54 @@
+{
+  "version": 2,
+  "tags": [
+    {
+      "name": "granite-clipboard",
+      "description": "A simple, lightweight element wrapping-up [clipboard.js](https://clipboardjs.com/)",
+      "attributes": [
+        {
+          "name": "text",
+          "type": "string"
+        },
+        {
+          "name": "action",
+          "description": "The action (copy or cut).",
+          "type": "copy|cut"
+        },
+        {
+          "name": "debug",
+          "description": "If debug is true, the components logs its actions on the console.",
+          "type": "Boolean"
+        }
+      ],
+      "properties": [
+        {
+          "name": "text",
+          "attribute": "text",
+          "type": "string"
+        },
+        {
+          "name": "action",
+          "attribute": "action",
+          "description": "The action (copy or cut).",
+          "type": "copy|cut"
+        },
+        {
+          "name": "debug",
+          "attribute": "debug",
+          "description": "If debug is true, the components logs its actions on the console.",
+          "type": "Boolean"
+        }
+      ],
+      "events": [
+        {
+          "name": "clipboard-cut",
+          "description": "Fires whenever a cut to clipboard action is done."
+        },
+        {
+          "name": "clipboard-copy",
+          "description": "Fires whenever a copy to clipboard action is done."
+        }
+      ]
+    }
+  ]
+}

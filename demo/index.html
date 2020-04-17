@@ -1,59 +1,47 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      background: #fafafa;
+    }
+  </style>
+</head>
+<body>
+  <div id="demo1"></div>
+  <div id="demo2"></div>
 
-    <title>granite-alert demo</title>
+  <script type="module">
+    import { html, render } from 'lit-html';
+    import '../index.js';
 
-    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    render(
+      html`
+      <granite-clipboard text="Text to be copied" debug>
+        <button style="outline:none;width:100px;height:30px;border-radius:5px;background-color:#aaaaff;cursor:pointer;text-align:center;">Click here</button>
+      </granite-clipboard>
+      `,
+      document.querySelector('#demo1')
+    );
 
-    <script type="module">
-      import '@polymer/iron-demo-helpers/demo-pages-shared-styles';
-      import '@polymer/iron-demo-helpers/demo-snippet';
-    </script>
-
-    <script type="module" src="../granite-clipboard.js"></script>
-    
-    <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
+    render(
+      html`
+      <style>
+        .inlineClipboard {
+          display: inline-block;
+        }
       </style>
-    </custom-style>
-    <style>
-      .inlineClipboard {
-        display: inline-block;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="vertical-section-container centered">
-        <div class="vertical-section-container centered">
-
-            <h3>granite-clipboard</h3>
-            <demo-snippet class="centered-demo">
-              <template id="app">
-                  <granite-clipboard text="Text to be copied" debug>
-                    <button style="outline:none;width:100px;height:30px;border-radius:5px;background-color:#aaaaff;cursor:pointer;text-align:center;">Click here</button>
-                  </granite-clipboard>
-                </template>
-            </demo-snippet>
-          </div>
-        
-          <div class="vertical-section-container centered">
-        
-            <h3>granite-clipboard</h3>
-            <demo-snippet class="centered-demo">
-              <template id="app">
-                  <div>
-                    Here an inline use case
-                    <granite-clipboard class="inlineClipboard" text="Text to be copied" debug>
-                      <button style="outline:none;width:100px;height:30px;border-radius:5px;background-color:#aaaaff;cursor:pointer;text-align:center;">Click here</button>
-                    </granite-clipboard>
-                    does it work?
-                  </div>
-                </template>
-            </demo-snippet>
-          </div>
-    </div>
-  </body>
+      <div>
+        Here an inline use case
+        <granite-clipboard class="inlineClipboard" text="Text to be copied" debug>
+          <button style="outline:none;width:100px;height:30px;border-radius:5px;background-color:#aaaaff;cursor:pointer;text-align:center;">Click here</button>
+        </granite-clipboard>
+        does it work?
+      </div>
+      `,
+      document.querySelector('#demo2')
+    );
+  </script>
+</body>
 </html>

@@ -1,81 +1,93 @@
 [![Published on Vaadin  Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/LostInBrittanygranite-clipboard)
 [![Stars on vaadin.com/directory](https://img.shields.io/vaadin-directory/star/LostInBrittanygranite-clipboard.svg)](https://vaadin.com/directory/component/LostInBrittanygranite-clipboard)
 
-# granite-clipboard #
+# \<granite-clipboard>
 
-A simple, lightweight element wrapping-up [clipboard.js](https://clipboardjs.com/)
+A simple, lightweight element wrapping-up [clipboard.js](https://clipboardjs.com/).
 
+Built on [lit-element](https://github.com/Polymer/lit-element) following the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
-> Built on [lit-element](https://github.com/Polymer/lit-element)
->
 > The old Polymer 2.x-1.x version is available on the [`polymer-hybrid-1.x-2.x` branch](https://github.com/LostInBrittany/granite-clipboard/tree/polymer-hybrid-1.x-2.x).
 
 
-
-## Doc & demo
-
-[https://lostinbrittany.github.io/granite-clipboard](https://lostinbrittany.github.io/granite-clipboard)
-
-
-## Usage example
-
-<!---
+## Installation
+```bash
+npm i granite-clipboard
 ```
-<custom-element-demo>
-  <template>
-    <script src="@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-    <script src="@granite-elements/granite-clipboard/granite-clipboard.js"></script>
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
+
+## Usage
 ```html
+<script type="module">
+  import 'granite-clipboard/granite-clipboard.js';
+</script>
+
 <granite-clipboard text="Text to be copied">
     <div style="width:250px;height:50px;border-radius:5px;background-color:#aaaaff;cursor:pointer;">Click here</div>
 </granite-clipboard> 
 ```
 
-
-## Install
-
-
-Install the component using [npm](https://www.npmjs.com/):
-
-```sh
-$ npm i @granite-elements/granite-clipboard 
+## Linting with ESLint, Prettier, and Types
+To scan the project for linting errors, run
+```bash
+npm run lint
 ```
 
-Once installed, import it in your application:
+You can lint with ESLint and Prettier individually as well
+```bash
+npm run lint:eslint
+```
+```bash
+npm run lint:prettier
+```
 
-import '@granite-elements/granite-clipboard/granite-clipboard.js';
+To automatically fix many linting errors, run
+```bash
+npm run format
+```
+
+You can format using ESLint and Prettier individually as well
+```bash
+npm run format:eslint
+```
+```bash
+npm run format:prettier
+```
+
+## Testing with Karma
+To run the suite of karma tests, run
+```bash
+npm run test
+```
+
+To run the tests in watch mode (for <abbr title="test driven development">TDD</abbr>, for example), run
+
+```bash
+npm run test:watch
+```
+
+## Demoing with Storybook
+To run a local instance of Storybook for your component, run
+```bash
+npm run storybook
+```
+
+To build a production version of Storybook, run
+```bash
+npm run storybook:build
+```
 
 
+## Tooling configs
 
-## Running demos and tests in browser
+For most of the tools, the configuration is in the `package.json` to reduce the amount of files in your project.
 
-1. Fork the `granite-clipboard` repository and clone it locally.
+If you customize the configuration a lot, you can consider moving them to individual files.
 
-1. Make sure you have [npm](https://www.npmjs.com/) 
-and the [Polymer CLI](https://www.polymer-project.org/3.0/docs/tools/polymer-cli) installed.
-
-1. When in the `granite-clipboard` directory, run `npm install` to install dependencies.
-
-1. Serve the project using Polyumer CLI:
-
-    `polymer serve --npm`
-
-1. Open the demo in the browser
-
-    - http://127.0.0.1:8080/components/@greanite-elements/granite-clipboard/demo
-
-
-## Attributes
-
-Attribute     | Type      | Default  | Description
----           | ---       | ---      | ---
-`text`        | *String*  | ``       | The text to copy
-`action`      | *String*  | `copy`   | The action to do (either `copy` or `cut`)  
+## Local Demo with `es-dev-server`
+```bash
+npm start
+```
+To run a local development server that serves the basic demo located in `demo/index.html`
 
 
 ## Contributing

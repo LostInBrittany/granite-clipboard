@@ -5,7 +5,7 @@ import '../index.js';
 describe('GraniteClipboard', () => {
   it('has a default action "copy", debug false and text ""', async () => {
     const el = await fixture(html`
-      <granite-clipboard></granite-clipboard>
+      <granite-clipboard>Hello test</granite-clipboard>
     `);
 
     expect(el.action).to.equal('copy');
@@ -13,34 +13,29 @@ describe('GraniteClipboard', () => {
     expect(el.text).to.equal('');
   });
 
+  it('fixes wrong action values', async () => {
+    const el = await fixture(html`
+      <granite-clipboard>Hello test</granite-clipboard>
+    `);
+    el.action = 'copy';
+    expect(el.action).to.equal('copy');
+    el.action = 'paste';
+    expect(el.action).to.equal('copy');
+    el.action = '';
+    expect(el.action).to.equal('copy');
+
+  });
+
   it('copies to clipboard on click', async () => {
     const el = await fixture(html`
-      <granite-clipboard text="Text to be copied" debug>
+      <granite-clipboard text="Text to be copied">Hello test
       </granite-clipboard>
     `);
     el.addEventListener('clipboard-copy', (evt) => {
-      console.log('Copied');
+      console.log('SHIT',evt)
       expect(evt.detail.text).to.equal('Text to be copied')
-    })
-    console.log(el.shadowRoot.querySelector('#container'))
+    })    
     el.shadowRoot.querySelector('#container').click();
 
   });
-/*
-  it('can override the title via attribute', async () => {
-    const el = await fixture(html`
-      <granite-clipboard title="attribute title"></granite-clipboard>
-    `);
-
-    expect(el.title).to.equal('attribute title');
-  });
-
-  it('passes the a11y audit', async () => {
-    const el = await fixture(html`
-      <granite-clipboard></granite-clipboard>
-    `);
-
-    await expect(el).shadowDom.to.be.accessible();
-  });
-*/
 });

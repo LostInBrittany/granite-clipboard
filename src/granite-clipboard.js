@@ -42,9 +42,6 @@ export class GraniteClipboard extends LitElement {
       console.log('[granite-clipboard] set action', val);
     }
     let oldVal = this._action;
-    if (!this._allowedValues) {
-      return;
-    }
     if (this._allowedValues.indexOf(val) < 0) {
       this._action = this._allowedValues[0];
     } else {
@@ -59,6 +56,7 @@ export class GraniteClipboard extends LitElement {
     this.text = '';
     this._action = 'copy';
     this._allowedValues = ['copy', 'cut'];
+    this._action = 'copy';
   }
 
   // Event listeners
@@ -67,17 +65,29 @@ export class GraniteClipboard extends LitElement {
     if (this.debug) {
       console.debug("[granite-clipboard] _onClipboardSuccess", evt);
     }
-    this.dispatchEvent(new CustomEvent("clipboard-" + this._action, {
+    this.dispatchEvent(new CustomEvent(`clipboard-${this._action}`, {
       bubbles: true,
       composed: true,
       detail: evt
     }));
   }
 
+  /* istanbul ignore next */ 
+  _onClipboardError(evt) {
+      console.error("[granite-clipboard] _onClipboardError", evt);
+      this.dispatchEvent(new CustomEvent(`clipboard-${this._action}-error`, {
+        bubbles: true,
+        composed: true,
+        detail: evt
+      }));
+  }
+
+
   connectedCallback() {
     super.connectedCallback();
-    if (!this._action) {
-      this._action = 'copy';
+    /* istanbul ignore next */ 
+    if (this.debug) {
+      console.log('[granite-clipboard] connectedCallback');
     }
   }
 
@@ -86,9 +96,9 @@ export class GraniteClipboard extends LitElement {
     if (this.debug) {
       console.log('[granite-clipboard] firstUpdated');
     }
-
     this.clipboard = new Clipboard(this.shadowRoot.querySelector('#container'));
     this.clipboard.on('success', this._onClipboardSuccess.bind(this));
+    this.clipboard.on('error', this._onClipboardError.bind(this));
   }
   
   shouldUpdate() {
@@ -100,6 +110,10 @@ export class GraniteClipboard extends LitElement {
   }
 
   render() {
+    /* istanbul ignore next */ 
+    if (this.debug) {
+      console.log('[granite-clipboard] render');
+    }
     return html`
       <div id="container" 
           data-clipboard-text=${this.text} 

@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/LostInBrittany/granite-clipboard"
   },
-  "author": "granite-clipboard",
+  "author": "Horacio Gonzalez <horacio.gonzalez@gmail.com>",
   "license": "MIT",
   "main": "index.js",
   "module": "index.js",

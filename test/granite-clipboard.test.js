@@ -23,19 +23,16 @@ describe('GraniteClipboard', () => {
     expect(el.action).to.equal('copy');
     el.action = '';
     expect(el.action).to.equal('copy');
-
   });
 
   it('copies to clipboard on click', async () => {
     const el = await fixture(html`
-      <granite-clipboard text="Text to be copied">Hello test
-      </granite-clipboard>
+      <granite-clipboard text="Text to be copied">Hello test </granite-clipboard>
     `);
-    el.addEventListener('clipboard-copy', (evt) => {
-      console.log('SHIT',evt)
-      expect(evt.detail.text).to.equal('Text to be copied')
-    })    
+    el.addEventListener('clipboard-copy', evt => {
+      console.log('SHIT', evt);
+      expect(evt.detail.text).to.equal('Text to be copied');
+    });
     el.shadowRoot.querySelector('#container').click();
-
   });
 });

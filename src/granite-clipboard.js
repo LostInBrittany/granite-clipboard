@@ -37,7 +37,8 @@ export class GraniteClipboard extends LitElement {
   }
 
   set action(val) {
-    /* istanbul ignore next */ 
+    /* istanbul ignore next */
+
     if (this.debug) {
       console.log('[granite-clipboard] set action', val);
     }
@@ -61,38 +62,45 @@ export class GraniteClipboard extends LitElement {
 
   // Event listeners
   _onClipboardSuccess(evt) {
-    /* istanbul ignore next */ 
-    if (this.debug) {
-      console.debug("[granite-clipboard] _onClipboardSuccess", evt);
-    }
-    this.dispatchEvent(new CustomEvent(`clipboard-${this._action}`, {
-      bubbles: true,
-      composed: true,
-      detail: evt
-    }));
-  }
+    /* istanbul ignore next */
 
-  /* istanbul ignore next */ 
-  _onClipboardError(evt) {
-      console.error("[granite-clipboard] _onClipboardError", evt);
-      this.dispatchEvent(new CustomEvent(`clipboard-${this._action}-error`, {
+    if (this.debug) {
+      console.debug('[granite-clipboard] _onClipboardSuccess', evt);
+    }
+    this.dispatchEvent(
+      new CustomEvent(`clipboard-${this._action}`, {
         bubbles: true,
         composed: true,
-        detail: evt
-      }));
+        detail: evt,
+      }),
+    );
   }
 
+  /* istanbul ignore next */
+
+  _onClipboardError(evt) {
+    console.error('[granite-clipboard] _onClipboardError', evt);
+    this.dispatchEvent(
+      new CustomEvent(`clipboard-${this._action}-error`, {
+        bubbles: true,
+        composed: true,
+        detail: evt,
+      }),
+    );
+  }
 
   connectedCallback() {
     super.connectedCallback();
-    /* istanbul ignore next */ 
+    /* istanbul ignore next */
+
     if (this.debug) {
       console.log('[granite-clipboard] connectedCallback');
     }
   }
 
   firstUpdated() {
-    /* istanbul ignore next */ 
+    /* istanbul ignore next */
+
     if (this.debug) {
       console.log('[granite-clipboard] firstUpdated');
     }
@@ -100,9 +108,10 @@ export class GraniteClipboard extends LitElement {
     this.clipboard.on('success', this._onClipboardSuccess.bind(this));
     this.clipboard.on('error', this._onClipboardError.bind(this));
   }
-  
+
   shouldUpdate() {
-    /* istanbul ignore next */ 
+    /* istanbul ignore next */
+
     if (this.debug) {
       console.log('[granite-clipboard] shouldUpdate');
     }
@@ -110,14 +119,13 @@ export class GraniteClipboard extends LitElement {
   }
 
   render() {
-    /* istanbul ignore next */ 
+    /* istanbul ignore next */
+
     if (this.debug) {
       console.log('[granite-clipboard] render');
     }
     return html`
-      <div id="container" 
-          data-clipboard-text=${this.text} 
-          data-clipboard-action=${this.action}>
+      <div id="container" data-clipboard-text=${this.text} data-clipboard-action=${this.action}>
         <slot></slot>
       </div>
     `;

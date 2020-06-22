@@ -19,6 +19,7 @@ import Clipboard from '@migrate-to-esm/clipboard/src/clipboard';
  * @prop {copy|cut} action -  The action (copy or cut).
  * @prop {Boolean} debug - If debug is true, the components logs its actions on the console.
  * @prop {String} text - The text to copy. { reflect: true }
+ * @prop {Object} container - The focused element for cases when focus has been changed (e.g. in modal dialogs).
  *
  * @event {CustomEvent<String>} clipboard-cut - Fires whenever a cut to clipboard action is done.
  * @event {CustomEvent<String>} clipboard-copy - Fires whenever a copy to clipboard action is done.
@@ -29,6 +30,7 @@ export class GraniteClipboard extends LitElement {
       action: { type: String },
       debug: { type: Boolean },
       text: { type: String, reflect: true },
+      container: { type: Object }
     };
   }
 
@@ -104,7 +106,7 @@ export class GraniteClipboard extends LitElement {
     if (this.debug) {
       console.log('[granite-clipboard] firstUpdated');
     }
-    this.clipboard = new Clipboard(this.shadowRoot.querySelector('#container'));
+    this.clipboard = new Clipboard(this.shadowRoot.querySelector('#container'), { container: this.container });
     this.clipboard.on('success', this._onClipboardSuccess.bind(this));
     this.clipboard.on('error', this._onClipboardError.bind(this));
   }

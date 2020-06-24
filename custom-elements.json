@@ -33,6 +33,11 @@
           "type": "copy|cut"
         },
         {
+          "name": "container",
+          "description": "The focused element for cases when focus has been changed (e.g. in modal dialogs).",
+          "type": "object"
+        },
+        {
           "name": "debug",
           "attribute": "debug",
           "description": "If debug is true, the components logs its actions on the console.",

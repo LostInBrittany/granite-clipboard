@@ -40,7 +40,7 @@
     "@open-wc/eslint-config": "^2.1.0",
     "@open-wc/prettier-config": "^0.1.10",
     "@open-wc/testing": "^2.5.29",
-    "@open-wc/testing-karma": "^3.4.8",
+    "@open-wc/testing-karma": "^4.0.9",
     "deepmerge": "^3.2.0",
     "es-dev-server": "^1.57.8",
     "eslint": "^6.1.0",
